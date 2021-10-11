@@ -93,24 +93,11 @@ class MainActivity : AppCompatActivity() {
 
             viewQutestion()
 
-            /*if (currentIndex==-1){
-                Toast.makeText(this,"You are in first question",Toast.LENGTH_SHORT).show()
-            }else{
-                viewQutestion()
-            }*/
 
         }
 
 
     }
-
-
-
-
-
-
-
-
 
 
     fun viewQutestion(){
@@ -124,30 +111,19 @@ class MainActivity : AppCompatActivity() {
         val correctAnswer=questionBank[currentIndex].answer
         val messageAnswer=if (check == correctAnswer)R.string._true else R.string._false
 
-
        // showToase(messageAnswer)
-
-
-
         val toast1=Toast.makeText(this,getString(messageAnswer),Toast.LENGTH_SHORT)
-
+        val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
         toast1.setGravity(Gravity.CENTER,5,5)
-        if (check){
-            val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
+        if (check==correctAnswer){
             _toast1.setTextColor(Color.GREEN)
-            _toast1.setTextSize(16F)
+            _toast1.setTextSize(24F)
             toast1.show()
         }else{
-            val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
             _toast1.setTextColor(Color.RED)
             _toast1.setTextSize(24F)
             toast1.show()
-        }
-
-        //return value message =true or false
-
-    }
-
+        } }
     fun showToase(message:Int){
 
 

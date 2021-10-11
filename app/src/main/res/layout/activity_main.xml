@@ -53,12 +53,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
+            android:textSize="20dp"
+            android:drawableLeft="@android:drawable/arrow_down_float"
+
             android:text="Previos" />
         <Button
             android:id="@+id/btnNext"
+            android:drawableLeft="@android:drawable/arrow_down_float"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
+            android:textSize="20dp"
             android:text="@string/btnNext" />
 
 
