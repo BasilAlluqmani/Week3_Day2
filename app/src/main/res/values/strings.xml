@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">App Week3 Day2</string>
+    <string name="_false">false</string>
+    <string name="_true">True</string>
+    <string name="question_Text">Jeddah is captal oh KSA</string>
+    <string name="btnNext">Next Button</string>
+
+    <string name="jeddahQuistions">Jeddah is the capital of KSA?</string>
+    <string name="asiaQuistions">Kotlin in Asia ?</string>
+    <string name="africaQuistions">Nile rivel is in africa ?</string>
+    <string name="auropaQuistions">UK is part of EURIS?</string>
+    <string name="americaQuistions">Freedom status is in america ?</string>
+
+
+
+</resources>
