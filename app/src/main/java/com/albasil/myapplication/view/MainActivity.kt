@@ -2,8 +2,10 @@ package com.albasil.myapplication.view
 
 
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
     private lateinit var nextButton:Button
+    private lateinit var previosButton:Button
 
     private lateinit var questionText: TextView
 
@@ -27,54 +30,131 @@ class MainActivity : AppCompatActivity() {
     private val questionBank= listOf(
         //الكلاس الي انشاته
         //ياخذ السوال و القيمة
-        Question(R.string.jeddahQuistions,false),
-        Question(R.string.asiaQuistions,false),
-        Question(R.string.africaQuistions,false),
-        Question(R.string.auropaQuistions,false),
-        Question(R.string.americaQuistions,false)
+        Question(R.string.question_australia, true),
+        Question(R.string.question_oceans, true),
+        Question(R.string.question_mideast, false),
+        Question(R.string.question_africa, false),
+        Question(R.string.question_americas, true),
+        Question(R.string.question_asia, true)
 
     )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        trueButton=findViewById(R.id.btnTrue)
 
+        val toast1=Toast.makeText(this,"Helloooo:)",Toast.LENGTH_SHORT)
+
+        toast1.setGravity(Gravity.CENTER,5,5)
+
+        val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
+        _toast1.setTextColor(Color.CYAN)
+        _toast1.setTextSize(16F)
+        toast1.show()
+
+
+
+
+        trueButton=findViewById(R.id.btnTrue)
         falseButton=findViewById(R.id.btnFalse)
         nextButton=findViewById(R.id.btnNext)
-
+        previosButton=findViewById(R.id.btnPrevious)
         questionText=findViewById(R.id.textQuestion)
+
+
+
 
         trueButton.setOnClickListener {
             //view->view or it
-            //show message
-        //    Toast.makeText(this,getString(R.string._false),Toast.LENGTH_LONG).show()
 
-            showToase(R.string._false)
+            checkAnswer(true)
 
         }
 
         falseButton.setOnClickListener {
-            showToase(R.string._true)
+            checkAnswer(false)
 
-            /*view->view
-            Toast.makeText(this,getText(R.string._true),Toast.LENGTH_LONG).show()*/
-        }
+}
 
-        val questionResId=questionBank[currentIndex].textResId
-        questionText.setText(questionResId)
+        viewQutestion()
 
         nextButton.setOnClickListener {
             currentIndex=(currentIndex+1) % questionBank.size
 
-            val questionResId=questionBank[currentIndex].textResId
-            questionText.setText(questionResId)
+            viewQutestion()
+        }
+
+        previosButton.setOnClickListener {
+
+            currentIndex=(currentIndex-1) % questionBank.lastIndex
+            Toast.makeText(this,"$currentIndex",Toast.LENGTH_SHORT).show()
+
+            viewQutestion()
+
+            /*if (currentIndex==-1){
+                Toast.makeText(this,"You are in first question",Toast.LENGTH_SHORT).show()
+            }else{
+                viewQutestion()
+            }*/
+
         }
 
 
     }
+
+
+
+
+
+
+
+
+
+
+    fun viewQutestion(){
+        val questionResId=questionBank[currentIndex].textResId
+        questionText.setText(questionResId)
+    }
+
+    private fun checkAnswer(check: Boolean) {
+        //cheack if true or false
+
+        val correctAnswer=questionBank[currentIndex].answer
+        val messageAnswer=if (check == correctAnswer)R.string._true else R.string._false
+
+
+       // showToase(messageAnswer)
+
+
+
+        val toast1=Toast.makeText(this,getString(messageAnswer),Toast.LENGTH_SHORT)
+
+        toast1.setGravity(Gravity.CENTER,5,5)
+        if (check){
+            val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
+            _toast1.setTextColor(Color.GREEN)
+            _toast1.setTextSize(16F)
+            toast1.show()
+        }else{
+            val _toast1:TextView = toast1.view!!.findViewById(android.R.id.message)
+            _toast1.setTextColor(Color.RED)
+            _toast1.setTextSize(24F)
+            toast1.show()
+        }
+
+        //return value message =true or false
+
+    }
+
     fun showToase(message:Int){
-        Toast.makeText(this,getString(message),Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
     }
 }
